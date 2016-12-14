@@ -1,7 +1,13 @@
 <?php
-/*
-Plugin Name: Elementor Hello World
-*/
+/**
+ * Plugin Name: Elementor Hello World
+ * Description: Elementor sample plugin.
+ * Plugin URI:  https://elementor.com/
+ * Version:     1.0.0
+ * Author:      Author Name
+ * Author URI:  https://elementor.com/
+ * Text Domain: hello-world
+ */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

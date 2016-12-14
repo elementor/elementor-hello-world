@@ -11,6 +11,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/**
+ * Load Hello World
+ *
+ * Load the plugin after Elementor (and other plugins) are loaded.
+ *
+ * @since 1.0.0
+ */
 function hello_world_load() {
 	// Load localization file
 	load_plugin_textdomain( 'hello-world' );
@@ -31,6 +38,4 @@ function hello_world_load() {
 	// Require the main plugin file
 	require( __DIR__ . '/plugin.php' );
 }
-
-// Load the plugin after Elementor (and other plugins) are loaded
 add_action( 'plugins_loaded', 'hello_world_load' );

@@ -6,6 +6,13 @@ use Elementor\Controls_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+/**
+ * Elementor Hello World
+ *
+ * Elementor widget for hello world.
+ *
+ * @since 1.0.0
+ */
 class Hello_World extends Widget_Base {
 
 	public function get_name() {
@@ -84,6 +91,6 @@ class Hello_World extends Widget_Base {
 		<div class="title">
 			{{{ settings.title }}}
 		</div>
-	<?php
+		<?php
 	}
 }

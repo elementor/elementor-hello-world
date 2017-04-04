@@ -34,6 +34,10 @@ class Plugin {
 	 */
 	private function add_actions() {
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'on_widgets_registered' ] );
+
+		add_action( 'elementor/frontend/after_register_scripts', function() {
+			wp_register_script( 'hello-world', plugins_url( '/assets/js/hello-world.js', ELEMENTOR_HELLO_WORLD__FILE__ ), [ 'jquery' ], false, true );
+		} );
 	}
 
 	/**

@@ -35,11 +35,9 @@ class Hello_World extends Widget_Base {
 	 * A list of scripts that the widgets is depended in
 	 * @since 1.3.0
 	 **/
-	/*
-		public function get_script_depends() {
-			return [ 'imagesloaded' ];
-		}
-	*/
+	public function get_script_depends() {
+		return [ 'hello-world' ];
+	}
 
 	protected function _register_controls() {
 		$this->start_controls_section(

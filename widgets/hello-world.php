@@ -24,7 +24,7 @@ class Hello_World extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'posts-ticker';
+		return 'eicon-posts-ticker';
 	}
 
 	public function get_categories() {

@@ -11,6 +11,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+define( 'ELEMENTOR_HELLO_WORLD__FILE__', __FILE__ );
+
 /**
  * Load Hello World
  *

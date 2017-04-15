@@ -24,11 +24,19 @@ class Hello_World extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'posts-ticker';
+		return 'eicon-posts-ticker';
 	}
 
 	public function get_categories() {
 		return [ 'general-elements' ];
+	}
+
+	/**
+	 * A list of scripts that the widgets is depended in
+	 * @since 1.3.0
+	 **/
+	public function get_script_depends() {
+		return [ 'hello-world' ];
 	}
 
 	protected function _register_controls() {

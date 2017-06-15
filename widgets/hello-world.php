@@ -101,4 +101,23 @@ class Hello_World extends Widget_Base {
 		</div>
 		<?php
 	}
+
+	public function add_wpml_support() {
+		add_filter( 'wpml_elementor_nodes_to_translate', [ $this, 'wpml_nodes_to_translate_filter' ] );
+	}
+
+	public function wpml_nodes_to_translate_filter( $nodes ) {
+		$nodes[ $this->get_name() ] = [
+			'conditions' => [ 'widgetType' => $this->get_name() ],
+			'fields'     => [
+				[
+					'field'       => 'title',
+					'type'        => __( 'Hello World Title', 'hello-world' ),
+					'editor_type' => 'LINE'
+				],
+			],
+		];
+
+		return $nodes;
+	}
 }

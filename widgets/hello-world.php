@@ -103,11 +103,11 @@ class Hello_World extends Widget_Base {
 	}
 
 	public function add_wpml_support() {
-		add_filter( 'wpml_elementor_elements_to_translate', [ $this, 'wpml_elements_to_translate_filter' ] );
+		add_filter( 'wpml_elementor_widgets_to_translate', [ $this, 'wpml_widgets_to_translate_filter' ] );
 	}
 
-	public function wpml_elements_to_translate_filter( $nodes ) {
-		$nodes[ $this->get_name() ] = [
+	public function wpml_widgets_to_translate_filter( $widgets ) {
+		$widgets[ $this->get_name() ] = [
 			'conditions' => [ 'widgetType' => $this->get_name() ],
 			'fields'     => [
 				[
@@ -118,6 +118,6 @@ class Hello_World extends Widget_Base {
 			],
 		];
 
-		return $nodes;
+		return $widgets;
 	}
 }

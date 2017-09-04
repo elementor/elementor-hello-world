@@ -88,9 +88,9 @@ class Hello_World extends Widget_Base {
 	}
 
 	/**
-	 * Register the controls of the widget.
+	 * Register the widget controls.
 	 *
-	 * Adds different input fields to allow the user to change and customization widget settings.
+	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
 	 * @since 1.0.0
 	 *

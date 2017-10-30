@@ -30,8 +30,8 @@ function hello_world_load() {
 		return;
 	}
 
-	// Check version required
-	$elementor_version_required = '1.0.0';
+	// Check required version
+	$elementor_version_required = '1.8.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
 		add_action( 'admin_notices', 'hello_world_fail_load_out_of_date' );
 		return;

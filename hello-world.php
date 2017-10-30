@@ -3,7 +3,7 @@
  * Plugin Name: Elementor Hello World
  * Description: Elementor sample plugin.
  * Plugin URI:  https://elementor.com/
- * Version:     1.0.0
+ * Version:     1.1.0
  * Author:      Author Name
  * Author URI:  https://elementor.com/
  * Text Domain: hello-world

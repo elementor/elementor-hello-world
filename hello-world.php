@@ -41,3 +41,18 @@ function hello_world_load() {
 	require( __DIR__ . '/plugin.php' );
 }
 add_action( 'plugins_loaded', 'hello_world_load' );
+
+
+function hello_world_fail_load_out_of_date() {
+	if ( ! current_user_can( 'update_plugins' ) ) {
+		return;
+	}
+
+	$file_path = 'elementor/elementor.php';
+
+	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
+	$message = '<p>' . __( 'Elementor Hello World is not working because you are using an old version of Elementor.', 'hello-world' ) . '</p>';
+	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', 'hello-world' ) ) . '</p>';
+
+	echo '<div class="error">' . $message . '</div>';
+}

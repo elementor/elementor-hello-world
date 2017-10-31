@@ -2,6 +2,7 @@
 namespace HelloWorld;
 
 use HelloWorld\Widgets\Hello_World;
+use HelloWorld\Widgets\Inline_Editing;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -61,6 +62,7 @@ class Plugin {
 	 */
 	private function includes() {
 		require __DIR__ . '/widgets/hello-world.php';
+		require __DIR__ . '/widgets/inline-editing.php';
 	}
 
 	/**
@@ -72,6 +74,7 @@ class Plugin {
 	 */
 	private function register_widget() {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Hello_World() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Inline_Editing() );
 	}
 }
 

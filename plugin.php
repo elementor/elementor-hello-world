@@ -77,5 +77,3 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Inline_Editing() );
 	}
 }
-
-new Plugin();

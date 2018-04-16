@@ -6,7 +6,7 @@
  * Version:     1.2.0
  * Author:      Author Name
  * Author URI:  https://elementor.com/
- * Text Domain: hello-world
+ * Text Domain: elementor-hello-world
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -108,7 +108,7 @@ final class Elementor_Hello_World {
 	 */
 	public function i18n() {
 
-		load_plugin_textdomain( 'hello-world' );
+		load_plugin_textdomain( 'elementor-hello-world' );
 
 	}
 
@@ -171,9 +171,9 @@ final class Elementor_Hello_World {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'hello-world' ) . '</strong>'
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -195,9 +195,9 @@ final class Elementor_Hello_World {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'hello-world' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
 
@@ -220,9 +220,9 @@ final class Elementor_Hello_World {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'hello-world' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'elementor-hello-world' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);
 
@@ -257,7 +257,7 @@ final class Elementor_Hello_World {
 	 */
 	public function widget_scripts() {
 
-		wp_register_script( 'hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'elementor-hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
 
 	}
 
@@ -272,8 +272,8 @@ final class Elementor_Hello_World {
 	 */
 	public function register_widgets() {
 
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \HelloWorld\Widgets\Hello_World() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \HelloWorld\Widgets\Inline_Editing() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Hello_World() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Inline_Editing() );
 
 	}
 

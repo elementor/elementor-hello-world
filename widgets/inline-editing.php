@@ -1,5 +1,5 @@
 <?php
-namespace HelloWorld\Widgets;
+namespace ElementorHelloWorld\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -34,7 +34,7 @@ class Inline_Editing extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Inline Editing', 'hello-world' );
+		return __( 'Inline Editing', 'elementor-hello-world' );
 	}
 
 	/**
@@ -81,34 +81,34 @@ class Inline_Editing extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'hello-world' ),
+				'label' => __( 'Content', 'elementor-hello-world' ),
 			]
 		);
 
 		$this->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'hello-world' ),
+				'label' => __( 'Title', 'elementor-hello-world' ),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( 'Title', 'hello-world' ),
+				'default' => __( 'Title', 'elementor-hello-world' ),
 			]
 		);
 
 		$this->add_control(
 			'description',
 			[
-				'label' => __( 'Description', 'hello-world' ),
+				'label' => __( 'Description', 'elementor-hello-world' ),
 				'type' => Controls_Manager::TEXTAREA,
-				'default' => __( 'Description', 'hello-world' ),
+				'default' => __( 'Description', 'elementor-hello-world' ),
 			]
 		);
 
 		$this->add_control(
 			'content',
 			[
-				'label' => __( 'Content', 'hello-world' ),
+				'label' => __( 'Content', 'elementor-hello-world' ),
 				'type' => Controls_Manager::WYSIWYG,
-				'default' => __( 'Content', 'hello-world' ),
+				'default' => __( 'Content', 'elementor-hello-world' ),
 			]
 		);
 

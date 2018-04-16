@@ -126,7 +126,7 @@ class Inline_Editing extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 
 		$this->add_inline_editing_attributes( 'title', 'none' );
 		$this->add_inline_editing_attributes( 'description', 'basic' );
@@ -149,9 +149,14 @@ class Inline_Editing extends Widget_Base {
 	 */
 	protected function _content_template() {
 		?>
-		<h2 class="elementor-inline-editing" data-elementor-setting-key="title" data-elementor-inline-editing-toolbar="none">{{{ settings.title }}}</h2>
-		<div class="elementor-inline-editing" data-elementor-setting-key="description" data-elementor-inline-editing-toolbar="basic">{{{ settings.description }}}</div>
-		<div class="elementor-inline-editing" data-elementor-setting-key="content" data-elementor-inline-editing-toolbar="advanced">{{{ settings.content }}}</div>
+		<#
+		view.addInlineEditingAttributes( 'title', 'none' );
+		view.addInlineEditingAttributes( 'description', 'basic' );
+		view.addInlineEditingAttributes( 'content', 'advanced' );
+		#>
+		<h2 {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</h2>
+		<div {{{ view.getRenderAttributeString( 'description' ) }}}>{{{ settings.description }}}</div>
+		<div {{{ view.getRenderAttributeString( 'content' ) }}}>{{{ settings.content }}}</div>
 		<?php
 	}
 }

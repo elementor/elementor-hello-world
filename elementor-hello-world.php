@@ -172,7 +172,7 @@ final class Elementor_Hello_World {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'hello-world' ) . '</strong>'
 		);
 
@@ -196,7 +196,7 @@ final class Elementor_Hello_World {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'hello-world' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -221,7 +221,7 @@ final class Elementor_Hello_World {
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor Hello World', 'hello-world' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'hello-world' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);

@@ -1,5 +1,5 @@
 <?php
-namespace HelloWorld\Widgets;
+namespace ElementorHelloWorld\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -38,7 +38,7 @@ class Hello_World extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Hello World', 'hello-world' );
+		return __( 'Hello World', 'elementor-hello-world' );
 	}
 
 	/**
@@ -84,7 +84,7 @@ class Hello_World extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'hello-world' ];
+		return [ 'elementor-hello-world' ];
 	}
 
 	/**
@@ -100,14 +100,14 @@ class Hello_World extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'hello-world' ),
+				'label' => __( 'Content', 'elementor-hello-world' ),
 			]
 		);
 
 		$this->add_control(
 			'title',
 			[
-				'label' => __( 'Title', 'hello-world' ),
+				'label' => __( 'Title', 'elementor-hello-world' ),
 				'type' => Controls_Manager::TEXT,
 			]
 		);
@@ -117,7 +117,7 @@ class Hello_World extends Widget_Base {
 		$this->start_controls_section(
 			'section_style',
 			[
-				'label' => __( 'Style', 'hello-world' ),
+				'label' => __( 'Style', 'elementor-hello-world' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -125,14 +125,14 @@ class Hello_World extends Widget_Base {
 		$this->add_control(
 			'text_transform',
 			[
-				'label' => __( 'Text Transform', 'hello-world' ),
+				'label' => __( 'Text Transform', 'elementor-hello-world' ),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
-					'' => __( 'None', 'hello-world' ),
-					'uppercase' => __( 'UPPERCASE', 'hello-world' ),
-					'lowercase' => __( 'lowercase', 'hello-world' ),
-					'capitalize' => __( 'Capitalize', 'hello-world' ),
+					'' => __( 'None', 'elementor-hello-world' ),
+					'uppercase' => __( 'UPPERCASE', 'elementor-hello-world' ),
+					'lowercase' => __( 'lowercase', 'elementor-hello-world' ),
+					'capitalize' => __( 'Capitalize', 'elementor-hello-world' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .title' => 'text-transform: {{VALUE}};',
@@ -153,7 +153,7 @@ class Hello_World extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 
 		echo '<div class="title">';
 		echo $settings['title'];

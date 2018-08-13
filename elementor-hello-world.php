@@ -15,7 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Main Elementor Hello World Class
  *
  * The init class that runs the Hello World plugin.
- *
  * @since 1.2.0
  */
 final class Elementor_Hello_World {
@@ -24,7 +23,6 @@ final class Elementor_Hello_World {
 	 * Plugin Version
 	 *
 	 * @since 1.2.0
-	 *
 	 * @var string The plugin version.
 	 */
 	const VERSION = '1.2.0';
@@ -33,7 +31,6 @@ final class Elementor_Hello_World {
 	 * Minimum Elementor Version
 	 *
 	 * @since 1.2.0
-	 *
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
 	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
@@ -42,7 +39,6 @@ final class Elementor_Hello_World {
 	 * Minimum PHP Version
 	 *
 	 * @since 1.2.0
-	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
 	const MINIMUM_PHP_VERSION = '7.0';
@@ -51,7 +47,6 @@ final class Elementor_Hello_World {
 	 * Instance
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access private
 	 * @static
 	 *
@@ -65,64 +60,55 @@ final class Elementor_Hello_World {
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access public
-	 * @static
 	 *
 	 * @return Elementor_Hello_World An instance of the class.
 	 */
 	public static function instance() {
-
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
-
 	}
-
 
 	/**
 	 * Constructor
 	 *
 	 * @since 1.0.0
-	 *
 	 * @access public
 	 */
 	public function __construct() {
 
+		// Load translation
 		add_action( 'init', [ $this, 'i18n' ] );
-		add_action( 'plugins_loaded', [ $this, 'init' ] );
 
+		// Init Plugin
+		add_action( 'plugins_loaded', [ $this, 'init' ] );
 	}
 
 	/**
 	 * Load Textdomain
 	 *
 	 * Load plugin localization files.
-	 *
 	 * Fired by `init` action hook.
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access public
 	 */
 	public function i18n() {
-
 		load_plugin_textdomain( 'elementor-hello-world' );
-
 	}
 
 	/**
 	 * Initialize the plugin
 	 *
-	 * Load the plugin only after Elementor (and other plugins) are loaded.
+	 * Validates that Elementor is already loaded.
 	 * Checks for basic plugin requirements, if one check fail don't continue,
-	 * if all check have passed load the files required to run the plugin.
+	 * if all check have passed add the plugin actions.
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access public
 	 */
 	public function init() {
@@ -145,15 +131,8 @@ final class Elementor_Hello_World {
 			return;
 		}
 
-		// Include plugin files
-		$this->includes();
-
-		// Register widget scripts
-		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
-
-		// Register widgets
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
-
+		// Once we get here, We have passed all validation checks so we can add our plugin hooks
+		$this->add_plugin_hooks();
 	}
 
 	/**
@@ -162,12 +141,12 @@ final class Elementor_Hello_World {
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 *
 	 * @since 1.0.0
-	 *
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
@@ -177,7 +156,6 @@ final class Elementor_Hello_World {
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
 
 	/**
@@ -186,23 +164,22 @@ final class Elementor_Hello_World {
 	 * Warning when the site doesn't have a minimum required Elementor version.
 	 *
 	 * @since 1.0.0
-	 *
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
 			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>',
-			 self::MINIMUM_ELEMENTOR_VERSION
+			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
 
 	/**
@@ -211,39 +188,35 @@ final class Elementor_Hello_World {
 	 * Warning when the site doesn't have a minimum required PHP version.
 	 *
 	 * @since 1.0.0
-	 *
 	 * @access public
 	 */
 	public function admin_notice_minimum_php_version() {
-
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
 			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'elementor-hello-world' ) . '</strong>',
-			 self::MINIMUM_PHP_VERSION
+			self::MINIMUM_PHP_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
 	}
 
 	/**
-	 * Include Files
+	 * Include Widgets files
 	 *
-	 * Load required plugin core files.
+	 * Load widgets files
 	 *
 	 * @since 1.2.0
-	 *
-	 * @access public
+	 * @access private
 	 */
-	public function includes() {
-
+	private function include_widgets_files() {
 		require_once( __DIR__ . '/widgets/hello-world.php' );
 		require_once( __DIR__ . '/widgets/inline-editing.php' );
-
 	}
 
 	/**
@@ -252,13 +225,27 @@ final class Elementor_Hello_World {
 	 * Load required plugin core files.
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access public
 	 */
 	public function widget_scripts() {
-
 		wp_register_script( 'elementor-hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
+	}
 
+	/**
+	 *  Add Plugin hooks
+	 *
+	 * Register plugin action hooks and filters
+	 *
+	 * @since 1.2.0
+	 * @access public
+	 */
+	public function add_plugin_hooks() {
+
+		// Register widget scripts
+		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
+
+		// Register widgets
+		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
 	}
 
 	/**
@@ -267,30 +254,27 @@ final class Elementor_Hello_World {
 	 * Register new Elementor widgets.
 	 *
 	 * @since 1.2.0
-	 *
 	 * @access public
 	 */
 	public function register_widgets() {
+		// Its is now safe to include Widgets files
+		$this->include_widgets_files();
 
+		// Register Widgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Hello_World() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Inline_Editing() );
-
 	}
-
 }
 
 /**
  * Load Hello World
  *
- * Main instance of Elementor_Hello_World.
+ * Instantiate Elementor_Hello_World.
  *
- * @since 1.0.0
  * @since 1.2.0 The logic moved from this function to a class method.
  */
 function hello_world_load() {
-
 	return Elementor_Hello_World::instance();
-
 }
 
 // Run Hello World

@@ -15,6 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Main Elementor Hello World Class
  *
  * The init class that runs the Hello World plugin.
+ * Intended To make sure that the plugin's minimum requirements are met.
+ *
+ * You should only modify the constants to match your plugin's needs.
+ *
+ * Any custom code should go inside Plugin Class in the plugin.php file.
  * @since 1.2.0
  */
 final class Elementor_Hello_World {
@@ -52,10 +57,10 @@ final class Elementor_Hello_World {
 	public function __construct() {
 
 		// Load translation
-		add_action( 'init', [ $this, 'i18n' ] );
+		add_action( 'init', array( $this, 'i18n' ) );
 
 		// Init Plugin
-		add_action( 'plugins_loaded', [ $this, 'init' ] );
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
 	}
 
 	/**
@@ -87,19 +92,19 @@ final class Elementor_Hello_World {
 
 		// Check if Elementor installed and activated
 		if ( ! did_action( 'elementor/loaded' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+			add_action( 'admin_notices', array( $this, 'admin_notice_missing_main_plugin' ) );
 			return;
 		}
 
 		// Check for required Elementor version
 		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
+			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_elementor_version' ) );
 			return;
 		}
 
 		// Check for required PHP version
 		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_php_version' ) );
 			return;
 		}
 

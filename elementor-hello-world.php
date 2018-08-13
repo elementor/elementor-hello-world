@@ -44,34 +44,6 @@ final class Elementor_Hello_World {
 	const MINIMUM_PHP_VERSION = '7.0';
 
 	/**
-	 * Instance
-	 *
-	 * @since 1.2.0
-	 * @access private
-	 * @static
-	 *
-	 * @var Elementor_Hello_World The single instance of the class.
-	 */
-	private static $_instance = null;
-
-	/**
-	 * Instance
-	 *
-	 * Ensures only one instance of the class is loaded or can be loaded.
-	 *
-	 * @since 1.2.0
-	 * @access public
-	 *
-	 * @return Elementor_Hello_World An instance of the class.
-	 */
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
-
-	/**
 	 * Constructor
 	 *
 	 * @since 1.0.0
@@ -104,7 +76,7 @@ final class Elementor_Hello_World {
 	 *
 	 * Validates that Elementor is already loaded.
 	 * Checks for basic plugin requirements, if one check fail don't continue,
-	 * if all check have passed add the plugin actions.
+	 * if all check have passed include the plugin class.
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
@@ -131,8 +103,8 @@ final class Elementor_Hello_World {
 			return;
 		}
 
-		// Once we get here, We have passed all validation checks so we can add our plugin hooks
-		$this->add_plugin_hooks();
+		// Once we get here, We have passed all validation checks so we can safely include our plugin
+		require_once( 'plugin.php' );
 	}
 
 	/**
@@ -205,77 +177,7 @@ final class Elementor_Hello_World {
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
-
-	/**
-	 * Include Widgets files
-	 *
-	 * Load widgets files
-	 *
-	 * @since 1.2.0
-	 * @access private
-	 */
-	private function include_widgets_files() {
-		require_once( __DIR__ . '/widgets/hello-world.php' );
-		require_once( __DIR__ . '/widgets/inline-editing.php' );
-	}
-
-	/**
-	 * widget_scripts
-	 *
-	 * Load required plugin core files.
-	 *
-	 * @since 1.2.0
-	 * @access public
-	 */
-	public function widget_scripts() {
-		wp_register_script( 'elementor-hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
-	}
-
-	/**
-	 *  Add Plugin hooks
-	 *
-	 * Register plugin action hooks and filters
-	 *
-	 * @since 1.2.0
-	 * @access public
-	 */
-	public function add_plugin_hooks() {
-
-		// Register widget scripts
-		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
-
-		// Register widgets
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
-	}
-
-	/**
-	 * Register Widgets
-	 *
-	 * Register new Elementor widgets.
-	 *
-	 * @since 1.2.0
-	 * @access public
-	 */
-	public function register_widgets() {
-		// Its is now safe to include Widgets files
-		$this->include_widgets_files();
-
-		// Register Widgets
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Hello_World() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ElementorHelloWorld\Widgets\Inline_Editing() );
-	}
 }
 
-/**
- * Load Hello World
- *
- * Instantiate Elementor_Hello_World.
- *
- * @since 1.2.0 The logic moved from this function to a class method.
- */
-function hello_world_load() {
-	return Elementor_Hello_World::instance();
-}
-
-// Run Hello World
-hello_world_load();
+// Instantiate Elementor_Hello_World.
+new Elementor_Hello_World();

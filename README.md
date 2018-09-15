@@ -1,6 +1,6 @@
 # Elementor Hello World Sample Plugin
 
-This is a sample plugin to demonostrate how you can write exstentions (plugins) to add custom functionalty to [Elementor](https://github.com/pojome/elementor/)
+This is a sample plugin to demonstrate how you can write extentions (plugins) to add custom functionality to [Elementor](https://github.com/pojome/elementor/)
 
 Plugin Structure: 
 ```

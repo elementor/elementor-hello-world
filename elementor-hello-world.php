@@ -27,10 +27,10 @@ final class Elementor_Hello_World {
 	/**
 	 * Plugin Version
 	 *
-	 * @since 1.2.0
+	 * @since 1.2.1
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.2.0';
+	const VERSION = '1.2.1';
 
 	/**
 	 * Minimum Elementor Version
@@ -38,7 +38,7 @@ final class Elementor_Hello_World {
 	 * @since 1.2.0
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
-	const MINIMUM_ELEMENTOR_VERSION = '2.0.0';
+	const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
 
 	/**
 	 * Minimum PHP Version

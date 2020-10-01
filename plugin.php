@@ -1,6 +1,8 @@
 <?php
 namespace ElementorHelloWorld;
 
+use ElementorHelloWorld\PageSettings\Page_Settings;
+
 /**
  * Class Plugin
  *
@@ -80,6 +82,19 @@ class Plugin {
 	}
 
 	/**
+	 * Add page settings controls
+	 *
+	 * Register new settings for a document page settings.
+	 *
+	 * @since 1.2.1
+	 * @access private
+	 */
+	private function add_page_settings_controls() {
+		require_once( __DIR__ . '/page-settings/manager.php' );
+		new Page_Settings();
+	}
+
+	/**
 	 *  Plugin class constructor
 	 *
 	 * Register plugin action hooks and filters
@@ -94,6 +109,8 @@ class Plugin {
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+		
+		$this->add_page_settings_controls();
 	}
 }
 

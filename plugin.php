@@ -50,6 +50,46 @@ class Plugin {
 	}
 
 	/**
+	 * Editor scripts
+	 *
+	 * Enqueue plugin javascripts integrations for Elementor editor.
+	 *
+	 * @since 1.2.1
+	 * @access public
+	 */
+	public function editor_scripts() {
+		add_filter( 'script_loader_tag', [ $this, 'editor_scripts_as_a_module' ], 10, 2 );
+
+		wp_enqueue_script(
+			'elementor-hello-world-editor',
+			plugins_url( '/assets/js/editor/editor.js', __FILE__ ),
+			[
+				'elementor-editor',
+			],
+			'1.2.1',
+			true
+		);
+	}
+
+	/**
+	 * Force load editor script as a module
+	 *
+	 * @since 1.2.1
+	 *
+	 * @param string $tag
+	 * @param string $handle
+	 *
+	 * @return string
+	 */
+	public function editor_scripts_as_a_module( $tag, $handle ) {
+		if ( 'elementor-hello-world-editor' === $handle ) {
+			$tag = str_replace( '<script', '<script type="module"', $tag );
+		}
+
+		return $tag;
+	}
+
+	/**
 	 * Include Widgets files
 	 *
 	 * Load widgets files
@@ -94,6 +134,10 @@ class Plugin {
 
 		// Register widgets
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+
+
+		// Register editor scripts
+		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );
 	}
 }
 

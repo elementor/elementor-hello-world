@@ -7,8 +7,8 @@
  * Author:      Author Name
  * Author URI:  https://elementor.com/
  * Text Domain: elementor-hello-world
- * Elementor tested up to: 3.0.0
- * Elementor Pro tested up to: 3.0.0
+ * Elementor tested up to: 3.5.0
+ * Elementor Pro tested up to: 3.5.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly

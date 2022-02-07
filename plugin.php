@@ -92,33 +92,23 @@ class Plugin {
 	}
 
 	/**
-	 * Include Widgets files
-	 *
-	 * Load widgets files
-	 *
-	 * @since 1.2.0
-	 * @access private
-	 */
-	private function include_widgets_files() {
-		require_once( __DIR__ . '/widgets/hello-world.php' );
-		require_once( __DIR__ . '/widgets/inline-editing.php' );
-	}
-
-	/**
 	 * Register Widgets
 	 *
 	 * Register new Elementor widgets.
 	 *
 	 * @since 1.2.0
 	 * @access public
+	 *
+	 * @param Widgets_Manager $widgets_manager Elementor widgets manager.
 	 */
-	public function register_widgets() {
+	public function register_widgets( $widgets_manager ) {
 		// Its is now safe to include Widgets files
-		$this->include_widgets_files();
+		require_once( __DIR__ . '/widgets/hello-world.php' );
+		require_once( __DIR__ . '/widgets/inline-editing.php' );
 
 		// Register Widgets
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Hello_World() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
+		$widgets_manager->register( new Widgets\Hello_World() );
+		$widgets_manager->register( new Widgets\Inline_Editing() );
 	}
 
 	/**
@@ -148,7 +138,7 @@ class Plugin {
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'widget_scripts' ] );
 
 		// Register widgets
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 
 		// Register editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );

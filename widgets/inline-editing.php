@@ -77,7 +77,7 @@ class Inline_Editing extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_content',
 			[
@@ -147,7 +147,7 @@ class Inline_Editing extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
+	protected function content_template() {
 		?>
 		<#
 		view.addInlineEditingAttributes( 'title', 'none' );

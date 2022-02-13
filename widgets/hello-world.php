@@ -96,7 +96,7 @@ class Hello_World extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_content',
 			[
@@ -169,7 +169,7 @@ class Hello_World extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
+	protected function content_template() {
 		?>
 		<div class="title">
 			{{{ settings.title }}}
